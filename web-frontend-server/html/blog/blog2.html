@@ -1,16 +1,295 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog 2</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog 2 | Final Cloud</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0d1020;
+      color: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d1020 0%, #090b16 100%);
+    }
+
+    .top-banner {
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 15px;
+      color: #d5def0;
+      background: linear-gradient(90deg, rgba(86, 214, 224, 0.12), rgba(94, 234, 212, 0.04));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .top-banner strong {
+      color: #ffffff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: #5eead4;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: #b9c3d8;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffffff;
+    }
+
+    .hero {
+      padding: 60px 40px 24px;
+      max-width: 900px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #d9fff7;
+      background: rgba(94, 234, 212, 0.08);
+      border: 1px solid rgba(94, 234, 212, 0.18);
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.08;
+      letter-spacing: -1.4px;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .hero p {
+      color: #b8c1d6;
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 760px;
+    }
+
+    .article-wrap {
+      padding: 10px 40px 50px;
+    }
+
+    .article {
+      max-width: 900px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .article img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article p {
+      color: #c1c9da;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .quote {
+      margin: 26px 0;
+      padding: 18px 20px;
+      border-left: 4px solid #5eead4;
+      background: rgba(94, 234, 212, 0.05);
+      border-radius: 12px;
+      color: #dffdfa;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: #14263a;
+      color: #77ecff;
+      border: 1px solid rgba(119, 236, 255, 0.12);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #ffffff;
+      background: transparent;
+    }
+
+    .footer {
+      padding: 0 40px 30px;
+      color: #74829b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar,
+      .hero,
+      .article-wrap,
+      .footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p,
+      .article p,
+      .quote {
+        font-size: 15px;
+      }
+
+      .article {
+        padding: 20px;
+      }
+
+      .article img {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Vì sao Docker quan trọng</h1>
-  <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="Docker" width="500">
-  <p>Docker giúp đóng gói ứng dụng và môi trường chạy vào container, nhờ đó project dễ chia sẻ cho cả nhóm.</p>
-  <p>Chỉ cần clone source và chạy docker compose là các thành phần có thể hoạt động gần giống nhau trên nhiều máy khác nhau, kể cả macOS hay Windows.</p>
-  <p><a href="/blog/">← Quay lại Blog</a></p>
-  <p><a href="/">← Quay lại Trang chủ</a></p>
+  <div class="page">
+    <div class="top-banner">
+      Final Cloud Project • <strong>Blog 02</strong> • Web Frontend Server
+    </div>
+
+    <nav class="navbar">
+      <div class="logo">Final<span>Cloud</span></div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog/" class="active">Blog</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="badge">Blog 02 • Docker in Team Project</div>
+      <h1>Vì sao Docker quan trọng</h1>
+      <p>
+        Phân tích vai trò của Docker trong việc đồng bộ môi trường, hỗ trợ làm việc nhóm
+        và triển khai hệ thống ổn định hơn trong project final-cloud.
+      </p>
+    </section>
+
+    <section class="article-wrap">
+      <article class="article">
+        <img src="https://delecweb.com/upload_images/images/2021/09/26/image.png" alt="Docker">
+
+        <p>
+          Docker là một công cụ rất quan trọng khi làm project nhóm, đặc biệt với những hệ thống
+          có nhiều thành phần khác nhau như frontend, backend, database và reverse proxy.
+          Thay vì phải cài thủ công từng phần mềm trên từng máy, Docker cho phép đóng gói mọi thứ
+          vào container để chạy thống nhất hơn.
+        </p>
+
+        <p>
+          Trong project final-cloud, điều này đặc biệt hữu ích vì các thành viên có thể dùng những
+          hệ điều hành khác nhau như macOS hoặc Windows. Miễn là có Docker Desktop, mọi người đều
+          có thể clone source về và chạy gần như cùng một môi trường.
+        </p>
+
+        <div class="quote">
+          Docker không chỉ giúp chạy ứng dụng, mà còn giúp cả nhóm giảm rất nhiều lỗi do khác môi trường.
+        </div>
+
+        <p>
+          Bên cạnh đó, Docker Compose còn giúp định nghĩa toàn bộ hệ thống trong một file duy nhất.
+          Điều này làm cho việc khởi động, dừng, build lại và demo hệ thống trở nên dễ dàng hơn nhiều.
+          Với các project môn học, đây là một lợi thế rất lớn vì tiết kiệm thời gian và tăng độ ổn định khi chấm bài.
+        </p>
+
+        <p>
+          Nhờ Docker, nhóm có thể chia phần việc rõ ràng theo từng service và đẩy code lên GitHub theo từng branch.
+          Sau đó chỉ cần pull và chạy compose là có thể tích hợp lại thành một hệ thống hoàn chỉnh.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="/blog/">← Quay lại Blog</a>
+          <a class="btn btn-secondary" href="/">Trang chủ</a>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer">
+      Final Cloud • Blog 02 • Minimal Fullscreen Dark UI
+    </div>
+  </div>
 </body>
 </html>

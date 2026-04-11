@@ -1,16 +1,295 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog 3</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog 3 | Final Cloud</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0d1020;
+      color: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0d1020 0%, #090b16 100%);
+    }
+
+    .top-banner {
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 15px;
+      color: #d5def0;
+      background: linear-gradient(90deg, rgba(86, 214, 224, 0.12), rgba(94, 234, 212, 0.04));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .top-banner strong {
+      color: #ffffff;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: #5eead4;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: #b9c3d8;
+      font-size: 15px;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #ffffff;
+    }
+
+    .hero {
+      padding: 60px 40px 24px;
+      max-width: 900px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      color: #d9fff7;
+      background: rgba(94, 234, 212, 0.08);
+      border: 1px solid rgba(94, 234, 212, 0.18);
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      line-height: 1.08;
+      letter-spacing: -1.4px;
+      margin-bottom: 18px;
+      font-weight: 900;
+    }
+
+    .hero p {
+      color: #b8c1d6;
+      font-size: 18px;
+      line-height: 1.8;
+      max-width: 760px;
+    }
+
+    .article-wrap {
+      padding: 10px 40px 50px;
+    }
+
+    .article {
+      max-width: 900px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .article img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .article p {
+      color: #c1c9da;
+      font-size: 16px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+
+    .quote {
+      margin: 26px 0;
+      padding: 18px 20px;
+      border-left: 4px solid #5eead4;
+      background: rgba(94, 234, 212, 0.05);
+      border-radius: 12px;
+      color: #dffdfa;
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 14px;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: #14263a;
+      color: #77ecff;
+      border: 1px solid rgba(119, 236, 255, 0.12);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #ffffff;
+      background: transparent;
+    }
+
+    .footer {
+      padding: 0 40px 30px;
+      color: #74829b;
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar,
+      .hero,
+      .article-wrap,
+      .footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+
+      .hero p,
+      .article p,
+      .quote {
+        font-size: 15px;
+      }
+
+      .article {
+        padding: 20px;
+      }
+
+      .article img {
+        height: 220px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Mục tiêu nghề nghiệp ngành CNTT</h1>
-  <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="IT Career" width="500">
-  <p>Mình muốn tích lũy kinh nghiệm thực tế qua các project như final-cloud để hiểu rõ hơn về backend, database, cloud và DevOps.</p>
-  <p>Việc tự triển khai một hệ thống mini-cloud là bước rất tốt để làm quen với môi trường thực tế trong ngành công nghệ thông tin.</p>
-  <p><a href="/blog/">← Quay lại Blog</a></p>
-  <p><a href="/">← Quay lại Trang chủ</a></p>
+  <div class="page">
+    <div class="top-banner">
+      Final Cloud Project • <strong>Blog 03</strong> • Web Frontend Server
+    </div>
+
+    <nav class="navbar">
+      <div class="logo">Final<span>Cloud</span></div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/blog/" class="active">Blog</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="badge">Blog 03 • Career Orientation</div>
+      <h1>Mục tiêu nghề nghiệp ngành CNTT</h1>
+      <p>
+        Chia sẻ định hướng học tập và phát triển kỹ năng trong ngành công nghệ thông tin
+        thông qua các project thực hành như final-cloud.
+      </p>
+    </section>
+
+    <section class="article-wrap">
+      <article class="article">
+        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4" alt="IT Career">
+
+        <p>
+          Công nghệ thông tin là một lĩnh vực rộng với rất nhiều hướng phát triển như lập trình web,
+          kỹ thuật phần mềm, dữ liệu, bảo mật và điện toán đám mây. Với mình, điều quan trọng không chỉ
+          là học lý thuyết mà còn phải được thực hành thông qua các project gần với thực tế.
+        </p>
+
+        <p>
+          Khi tham gia project final-cloud, mình nhận ra rằng việc hiểu cách một hệ thống được tổ chức
+          và triển khai quan trọng không kém việc viết code. Một sản phẩm hoàn chỉnh cần có nhiều lớp,
+          nhiều service và cần được kết nối với nhau một cách hợp lý.
+        </p>
+
+        <div class="quote">
+          Những project như final-cloud giúp mình tiến gần hơn tới mục tiêu trở thành kỹ sư phần mềm
+          có thể vừa phát triển ứng dụng vừa hiểu cách triển khai hệ thống.
+        </div>
+
+        <p>
+          Trong tương lai, mình muốn tiếp tục phát triển theo hướng backend và cloud, vì đây là những
+          mảng có tính ứng dụng cao và rất cần thiết trong môi trường làm việc hiện đại. Việc làm quen
+          sớm với Docker, API, database và reverse proxy sẽ là nền tảng tốt cho thực tập và công việc sau này.
+        </p>
+
+        <p>
+          Mình tin rằng mỗi project hoàn thành là một bước tiến nhỏ nhưng có giá trị lớn, vì nó vừa giúp
+          cải thiện kỹ năng kỹ thuật, vừa tăng khả năng làm việc nhóm và tư duy hệ thống.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="/blog/">← Quay lại Blog</a>
+          <a class="btn btn-secondary" href="/">Trang chủ</a>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer">
+      Final Cloud • Blog 03 • Minimal Fullscreen Dark UI
+    </div>
+  </div>
 </body>
 </html>
