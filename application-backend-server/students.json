@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Nguyen Van A",
+    "major": "Computer Science",
+    "gpa": 3.50
+  },
+  {
+    "id": 2,
+    "name": "Tran Thi B",
+    "major": "Information Technology",
+    "gpa": 3.70
+  },
+  {
+    "id": 3,
+    "name": "Le Van C",
+    "major": "Software Engineering",
+    "gpa": 3.20
+  },
+  {
+    "id": 4,
+    "name": "Pham Thi D",
+    "major": "Data Science",
+    "gpa": 3.80
+  },
+  {
+    "id": 5,
+    "name": "Hoang Van E",
+    "major": "Cyber Security",
+    "gpa": 3.40
+  }
+]
