@@ -1,32 +1,32 @@
 [
   {
     "id": 1,
-    "name": "Nguyen Van A",
+    "name": "Ngo Nguyen Le Khanh",
     "major": "Computer Science",
-    "gpa": 3.50
+    "gpa": 3.5
   },
   {
     "id": 2,
-    "name": "Tran Thi B",
+    "name": "Khong Duc Tuan",
     "major": "Information Technology",
-    "gpa": 3.70
+    "gpa": 3.7
   },
   {
     "id": 3,
-    "name": "Le Van C",
+    "name": "Tran Luu Mai",
     "major": "Software Engineering",
-    "gpa": 3.20
+    "gpa": 3.2
   },
   {
     "id": 4,
-    "name": "Pham Thi D",
+    "name": "Nguyen Minh Tuan",
     "major": "Data Science",
-    "gpa": 3.80
+    "gpa": 3.8
   },
   {
     "id": 5,
-    "name": "Hoang Van E",
+    "name": "Vo Anh Kiet",
     "major": "Cyber Security",
-    "gpa": 3.40
+    "gpa": 3.4
   }
 ]

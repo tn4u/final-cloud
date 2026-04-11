@@ -8,10 +8,16 @@ from jose import jwt
 
 app = Flask(__name__)
 
+# =========================
+# Cấu hình OIDC / Keycloak
+# =========================
 ISSUER = os.getenv("OIDC_ISSUER", "http://authentication-identity-server:8080/realms/realm_final_cloud")
 AUDIENCE = os.getenv("OIDC_AUDIENCE", "flask-app")
 JWKS_URL = f"{ISSUER}/protocol/openid-connect/certs"
 
+# =========================
+# Cấu hình Database
+# =========================
 DB_HOST = os.getenv("DB_HOST", "relational-database-server")
 DB_PORT = int(os.getenv("DB_PORT", "3306"))
 DB_USER = os.getenv("DB_USER", "root")
@@ -21,6 +27,7 @@ DB_NAME = os.getenv("DB_NAME", "studentdb")
 _JWKS = None
 _TS = 0
 
+
 def get_jwks():
     global _JWKS, _TS
     now = time.time()
@@ -29,26 +36,45 @@ def get_jwks():
         _TS = now
     return _JWKS
 
+
+@app.get("/")
+def home():
+    return jsonify({
+        "message": "Application Backend Server is running",
+        "project": "final-cloud",
+        "service": "application-backend-server"
+    })
+
+
 @app.get("/hello")
 def hello():
     return jsonify({
         "message": "Hello from Application Backend Server!",
+        "project": "final-cloud",
         "service": "application-backend-server",
-        "project": "final-cloud"
+        "status": "success"
     })
+
 
 @app.get("/student")
 def student():
     try:
         with open("students.json", "r", encoding="utf-8") as f:
             data = json.load(f)
+
         return jsonify({
+            "status": "success",
             "source": "students.json",
             "count": len(data),
             "students": data
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "status": "error",
+            "message": "Cannot read students.json",
+            "error": str(e)
+        }), 500
+
 
 @app.get("/students-db")
 def students_db():
@@ -61,25 +87,41 @@ def students_db():
             database=DB_NAME,
             cursorclass=pymysql.cursors.DictCursor
         )
+
         with conn:
             with conn.cursor() as cursor:
-                cursor.execute("SELECT id, student_id, fullname, dob, major FROM students")
+                cursor.execute("""
+                    SELECT id, student_id, fullname, dob, major
+                    FROM students
+                """)
                 rows = cursor.fetchall()
+
         return jsonify({
+            "status": "success",
             "source": "database",
             "count": len(rows),
             "students": rows
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({
+            "status": "error",
+            "message": "Cannot read data from database",
+            "error": str(e)
+        }), 500
+
 
 @app.get("/secure")
 def secure():
     auth = request.headers.get("Authorization", "")
+
     if not auth.startswith("Bearer "):
-        return jsonify({"error": "Missing Bearer token"}), 401
+        return jsonify({
+            "status": "error",
+            "message": "Missing Bearer token"
+        }), 401
 
     token = auth.split(" ", 1)[1]
+
     try:
         payload = jwt.decode(
             token,
@@ -88,13 +130,20 @@ def secure():
             audience=AUDIENCE,
             issuer=ISSUER
         )
+
         return jsonify({
-            "message": "Secure resource OK",
+            "status": "success",
+            "message": "Secure resource accessed successfully",
             "preferred_username": payload.get("preferred_username"),
-            "realm": ISSUER
+            "issuer": ISSUER
         })
     except Exception as e:
-        return jsonify({"error": str(e)}), 401
+        return jsonify({
+            "status": "error",
+            "message": "Invalid or expired token",
+            "error": str(e)
+        }), 401
+
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8081)
+    app.run(host="0.0.0.0", port=8081, debug=True)

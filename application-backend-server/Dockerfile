@@ -9,4 +9,5 @@ COPY app.py .
 COPY students.json .
 
 EXPOSE 8081
+
 CMD ["python", "app.py"]
