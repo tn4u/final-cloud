@@ -1,4 +1,35 @@
+# OS files
 .DS_Store
-.env
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+env/
+
+# Logs
 *.log
+
+# Docker / local data
 object-storage-server/data/
+monitoring-grafana-dashboard-server/data/
+relational-database-server/data/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Build / package
+dist/
+build/
+target/
+
+# Env files
+.env
+.env.*
