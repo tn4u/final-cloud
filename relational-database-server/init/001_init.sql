@@ -24,6 +24,6 @@ CREATE TABLE IF NOT EXISTS students (
 );
 
 INSERT INTO students (student_id, fullname, dob, major) VALUES
-('SV001', 'Nguyen Van A', '2004-01-15', 'Computer Science'),
-('SV002', 'Tran Thi B', '2004-05-20', 'Information Technology'),
-('SV003', 'Le Van C', '2004-09-10', 'Software Engineering');
+('SV001', 'Ngo Nguyen Le Khanh', '2004-01-15', 'Computer Science'),
+('SV002', 'Khong Duc Tuan', '2004-05-20', 'Information Technology'),
+('SV003', 'Tran Luu Mai', '2004-09-10', 'Software Engineering');
