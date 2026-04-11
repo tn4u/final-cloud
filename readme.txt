@@ -40,6 +40,7 @@ DNS: 1053/udp
 Prometheus: 9090
 Grafana: 3000
 Proxy: 80
-Thành viên
-Thành viên 1: Web, App, DB, Proxy
-Thành viên 2: Auth, Storage, DNS, Monitoring, EC2
+
+## Thành viên
+Khổng Đức Tuấn: Web, App, DB, Proxy
+Ngô Nguyễn Lê Khanh: Auth, Storage, DNS, Monitoring, EC2
