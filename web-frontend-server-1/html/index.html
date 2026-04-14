@@ -1,0 +1,44 @@
+cat > web-frontend-server-1/html/index.html <<'EOF'
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Instance 1</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d1020;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .box {
+      text-align: center;
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    h1 {
+      font-size: 56px;
+      margin-bottom: 16px;
+      color: #5eead4;
+    }
+    p {
+      font-size: 22px;
+      color: #cbd5e1;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>INSTANCE 1</h1>
+    <p>Serving from web-frontend-server-1</p>
+  </div>
+</body>
+</html>
+EOF
