@@ -8,10 +8,12 @@ from jose import jwt
 
 app = Flask(__name__)
 
-ISSUER = os.getenv("OIDC_ISSUER", "http://authentication-identity-server:8080/realms/realm_final_cloud")
+ISSUER = os.getenv("OIDC_ISSUER", "http://localhost:8081/realms/realm_final_cloud")
 AUDIENCE = os.getenv("OIDC_AUDIENCE", "flask-app")
-JWKS_URL = f"{ISSUER}/protocol/openid-connect/certs"
-
+JWKS_URL = os.getenv(
+    "OIDC_JWKS_URL",
+    "http://authentication-identity-server:8080/realms/realm_final_cloud/protocol/openid-connect/certs"
+)
 DB_HOST = os.getenv("DB_HOST", "relational-database-server")
 DB_PORT = int(os.getenv("DB_PORT", "3306"))
 DB_USER = os.getenv("DB_USER", "root")
@@ -25,7 +27,11 @@ def get_jwks():
     global _JWKS, _TS
     now = time.time()
     if not _JWKS or now - _TS > 600:
-        _JWKS = requests.get(JWKS_URL, timeout=5).json()
+        r = requests.get(JWKS_URL, timeout=5)
+        print("JWKS_URL =", JWKS_URL)
+        print("Status =", r.status_code)
+        print("Body =", r.text)
+        _JWKS = r.json()
         _TS = now
     return _JWKS
 
@@ -85,8 +91,8 @@ def secure():
             token,
             get_jwks(),
             algorithms=["RS256"],
-            audience=AUDIENCE,
-            issuer=ISSUER
+            issuer=ISSUER,
+            options={"verify_aud": False}
         )
         return jsonify({
             "message": "Secure resource OK",
